@@ -46,4 +46,8 @@ As pastas deste projeto estão organizadas da seguinte forma:
         <br>
         *PyDrive2 é uma biblioteca wrapper de google-api-python-client que simplifica muitas tarefas comuns da API V2 do Google Drive.*
 
+    - https://docs.iterative.ai/PyDrive2/oauth/#sample-settings-yaml
+        <br>
+        *Autenticação automática e personalizada com `settings.yaml`, como autenticação silenciosa em uma máquina remota.*
+
 <br>

@@ -13,7 +13,7 @@ _____
 ### Preparação do Ambiente de Desenvolvimento em Python:
 <br>
 
-Ambiente de desenvolvimento (IDE):
+#### Ambiente de desenvolvimento (IDE):
 - Linguagem Python 3.8 (ou superior)
 - VS Code (IDE)
 - Plugins (requeridos): 
@@ -21,9 +21,7 @@ Ambiente de desenvolvimento (IDE):
    - Pylance
 <br>
 
-Ambiente Virtual Python para configuração de pacotes requetidos para o desenvolvimento.
-<br>
-
+#### Ambiente Virtual Python para configuração de pacotes requetidos para o desenvolvimento.
 - Criando o ambiente virtual chamado **`"venv"`**:
 
     ```shell
@@ -70,6 +68,23 @@ Ambiente Virtual Python para configuração de pacotes requetidos para o desenvo
     (venv)
     ```
 
-
-
 <br>
+
+#### Instalação dos Pacotes necessários.
+- Todos os pacotes requeridos para o projeto estão listados no arquivo "`requirements.txt`" na pasta `root` do projeto. Para instalação utilize os comandos abaixo:
+
+    <br>
+
+    Passo opcional para atualização do `pip` no ambiente **`venv`**:
+
+    ```shell
+    pip install --upgrade pip
+    ```
+    <br>
+
+    Passo de instalação dos pacotes via arquivo *`requirements.txt`*:
+
+    ```shell
+    pip install -r requirements.txt
+    ```
+    <br>

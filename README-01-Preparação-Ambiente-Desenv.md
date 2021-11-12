@@ -31,11 +31,11 @@ Ambiente Virtual Python para configuração de pacotes requetidos para o desenvo
     python -m venv venv
     ```
 
-    <br>
+<br>
 
     Obs: *No windows para funcionamento do **`"venv"`** pode ser necessário executar o seguinte comando via Powershell:*
 
-    <br>
+<br>
 
     ```shell
     Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
@@ -48,42 +48,42 @@ Ambiente Virtual Python para configuração de pacotes requetidos para o desenvo
 
     No Windows via Powershell utilizar "`activate.bat`".
 
-    <br>
+<br>
 
     ```shell
     .\venv\Scripts\Activate.ps1
     ```
     
-    <br>
+<br>
 
     No Windows via CMD utilizar "`activate.bat`".
 
-    <br>
+<br>
 
     ```shell
     .\venv\Scripts\activate.bat
     ```
 
-    <br>
+<br>
 
     No `Linux` ou `MAC` utiliar "`activate`".
 
-    <br>
+<br>
 
     ```shell
     source .venv/bin/activate
     ```
 
-    <br>
+<br>
 
     Obs: *Para verificar que está funcionando e o ambiente foi ativado, deve aparecer o nome do ambiente destacado com prefixo do seu prompt de comandos, conforme abaixo:*
 
-    <br>
+<br>
 
     ```shell
     (venv)
     ```
-    <br>
+<br>
 
 
 <br>

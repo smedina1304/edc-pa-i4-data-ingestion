@@ -40,7 +40,7 @@ _____
 
 - Ativando o ambiente virtual **`"venv"`**:
 
-    No Windows via Powershell utilizar "`activate.bat`".
+    No Windows via Powershell utilizar "`Activate.ps1`".
 
     ```shell
     .\venv\Scripts\Activate.ps1

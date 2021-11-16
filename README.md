@@ -23,7 +23,9 @@ As pastas deste projeto estão organizadas da seguinte forma:
 
 - `root`
     - `docs` - Documentação gerada no formato `.md`, `.docx` ou `.pdf` para detalhamento e suporte conceitual deste projeto.
+        - `images` - Imagens referenciadas das documentações e procedimentos deste projeto.
         - `ipynb`- Arquivos do `Jupyter Notebook` utilizados para verificar ou analizar pontos necessários para o desenvolvimentos deste projeto.
+    - `sh-infra` - Pasta que contém os *'shell scripts'* utilizados para criação e manuteção dos recursos de infraestrutura em cloud.
 
 <br>
 

@@ -37,6 +37,10 @@ As pastas deste projeto estão organizadas da seguinte forma:
     >.\docs\doc-02-Requisitos-Ferramentas-CLI.md
 <br>
 
+3. Criação do Cluster Kubernetes (k8s) em Cloud.
+    >.\docs\doc-03-Criação-Cluster-k8s.md
+<br>
+
 ### Repositórios Github usados como referência de pesquisa:
 
 - "edc-airflow-spark-on-k8s"

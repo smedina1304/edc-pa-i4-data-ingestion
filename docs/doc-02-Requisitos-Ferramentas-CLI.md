@@ -13,7 +13,10 @@ _____
 ### Requisitos de ferramentas CLI (Command line):
 <br>
 
-A utilização de ferramentas via CLI (*"command line"*) é importante pois podemos definir os scripts de criação, preparação de deploy em nosso ambiente, deixando o mesmo facilmente de ser replicavel em outra estrutura se necessário, e até mesmo em um caso de um acelerador para um "disaster recovery".
+A utilização de ferramentas via CLI (*"command line"*) são importantes pois podemos definir os scripts de criação, preparação de deploy em nosso ambiente, deixando o mesmo facilmente de ser replicavel em outra estrutura se necessário, e até mesmo em um caso de um acelerador para um "disaster recovery".
+<br>
+
+Para este projeto estaremos utilizando a infraestrutura em Cloud da GCP, rodando nossos recursos em Cluster Kubernetes. 
 <br>
 
 - Recursos indicados:

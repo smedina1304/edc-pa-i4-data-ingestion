@@ -31,7 +31,10 @@ As pastas deste projeto estão organizadas da seguinte forma:
 
 1. Preparação do Ambiente de Desenvolvimento.
     >.\docs\doc-01-Preparação-Ambiente-Desenv.md
+<br>
 
+2. Requisitos de ferramentas CLI.
+    >.\docs\doc-02-Requisitos-Ferramentas-CLI.md
 <br>
 
 ### Repositórios Github usados como referência de pesquisa:

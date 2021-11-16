@@ -41,7 +41,7 @@ _____
         <br>
         Atenção o parametro `--preemptible` não deve ser utilizado em ambientes produtivos.
         <br>
-        Foram selecionadas dois tipos de maquinas `e2-standard-2` ou `e2-standard-4` para criação do cluster no período de testes, é necessário avalidar o comportamente e a estabilidade mediante ao volume de dados e capacidade de processamento a configuração mais adequada.
+        Foram selecionadas dois tipos de maquinas `e2-standard-2` ou `e2-standard-4` para criação do cluster no período de testes, é necessário avaliar o comportamento e a estabilidade mediante ao volume de dados e capacidade de processamento mais adequada para atendimento das expectativas de disponibilização de resultados.
         <br>
 
         ```shell

@@ -84,67 +84,67 @@ _____
         Abaixo as telas do Console do GPC com configurações similares do comando acima:
         <br>
         <p align="left">
-            <img src="docs/images/cluster-k8s-gke-config-01.png" width="600" style="max-width: 600px;">
+            <img src="images/cluster-k8s-gke-config-01.png" width="600" style="max-width: 600px;">
         </p>
         <br>
 
         <p align="left">
-            <img src="docs/images/cluster-k8s-gke-config-02.png" width="600" style="max-width: 600px;">
+            <img src="images/cluster-k8s-gke-config-02.png" width="600" style="max-width: 600px;">
         </p>
         <br>
 
         <p align="left">
-            <img src="docs/images/cluster-k8s-gke-config-03.png" width="600" style="max-width: 600px;">
+            <img src="images/cluster-k8s-gke-config-03.png" width="600" style="max-width: 600px;">
         </p>
         <br>
 
         <p align="left">
-            <img src="docs/images/cluster-k8s-gke-config-04.png" width="600" style="max-width: 600px;">
+            <img src="images/cluster-k8s-gke-config-04.png" width="600" style="max-width: 600px;">
         </p>
         <br>
 
         <p align="left">
-            <img src="docs/images/cluster-k8s-gke-config-05.png" width="600" style="max-width: 600px;">
+            <img src="images/cluster-k8s-gke-config-05.png" width="600" style="max-width: 600px;">
         </p>
         <br>
 
         <p align="left">
-            <img src="docs/images/cluster-k8s-gke-config-06.png" width="600" style="max-width: 600px;">
+            <img src="images/cluster-k8s-gke-config-06.png" width="600" style="max-width: 600px;">
         </p>
         <br>
 
         <p align="left">
-            <img src="docs/images/cluster-k8s-gke-config-07.png" width="600" style="max-width: 600px;">
+            <img src="images/cluster-k8s-gke-config-07.png" width="600" style="max-width: 600px;">
         </p>
         <br>
 
         <p align="left">
-            <img src="docs/images/cluster-k8s-gke-config-08.png" width="600" style="max-width: 600px;">
+            <img src="images/cluster-k8s-gke-config-08.png" width="600" style="max-width: 600px;">
         </p>
         <br>
 
         <p align="left">
-            <img src="docs/images/cluster-k8s-gke-config-09.png" width="600" style="max-width: 600px;">
+            <img src="images/cluster-k8s-gke-config-09.png" width="600" style="max-width: 600px;">
         </p>
         <br>
 
         <p align="left">
-            <img src="docs/images/cluster-k8s-gke-config-10.png" width="600" style="max-width: 600px;">
+            <img src="images/cluster-k8s-gke-config-10.png" width="600" style="max-width: 600px;">
         </p>
         <br>
 
         <p align="left">
-            <img src="docs/images/cluster-k8s-gke-config-11.png" width="600" style="max-width: 600px;">
+            <img src="images/cluster-k8s-gke-config-11.png" width="600" style="max-width: 600px;">
         </p>
         <br>
 
         <p align="left">
-            <img src="docs/images/cluster-k8s-gke-config-12.png" width="600" style="max-width: 600px;">
+            <img src="images/cluster-k8s-gke-config-12.png" width="600" style="max-width: 600px;">
         </p>
         <br>
 
         <p align="left">
-            <img src="docs/images/cluster-k8s-gke-config-13.png" width="600" style="max-width: 600px;">
+            <img src="images/cluster-k8s-gke-config-13.png" width="600" style="max-width: 600px;">
         </p>
         <br>
         <br>

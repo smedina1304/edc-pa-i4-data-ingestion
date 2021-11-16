@@ -81,7 +81,7 @@ _____
         *Script: `sh-infra\cluster_create.sh`*
         <br>
 
-        Abaixo as telas do Console do GPC com configurações similares do comando acima:
+        Abaixo as telas do Console do GPC com configurações similares do comando acima para demonstrar como seria criado o cluster diretamente pela interface do GCP:
         <br>
         <p align="left">
             <img src="images/cluster-k8s-gke-config-01.png" width="600" style="max-width: 600px;">
@@ -160,7 +160,7 @@ _____
 
     *Output:*
     ```console
-    gke_edc-igti-smedina_us-east1-c_cluster-smedina-k8s
+    gke_edc-igti-smedina_us-east1-c_cluster-pa-i4-data-k8s
     ```
 
     <br>
@@ -172,13 +172,13 @@ _____
 
     *Output:*
     ```console
-    NAME                                                 STATUS   ROLES    AGE    VERSION
-    gke-cluster-smedina-k8s-default-pool-0bde709b-0vq6   Ready    <none>   5m8s   v1.20.9-gke.1001
-    gke-cluster-smedina-k8s-default-pool-0bde709b-2fb6   Ready    <none>   5m8s   v1.20.9-gke.1001
-    gke-cluster-smedina-k8s-default-pool-0bde709b-dzt2   Ready    <none>   5m9s   v1.20.9-gke.1001
-    gke-cluster-smedina-k8s-default-pool-0bde709b-ksgh   Ready    <none>   5m9s   v1.20.9-gke.1001
-    gke-cluster-smedina-k8s-default-pool-0bde709b-vfvh   Ready    <none>   5m8s   v1.20.9-gke.1001
-    gke-cluster-smedina-k8s-default-pool-0bde709b-vtvk   Ready    <none>   5m9s   v1.20.9-gke.1001
+    NAME                                                    STATUS   ROLES    AGE    VERSION
+    gke-cluster-pa-i4-data-k8s-default-pool-0bde709b-0vq6   Ready    <none>   5m8s   v1.20.9-gke.1001
+    gke-cluster-pa-i4-data-k8s-default-pool-0bde709b-2fb6   Ready    <none>   5m8s   v1.20.9-gke.1001
+    gke-cluster-pa-i4-data-k8s-default-pool-0bde709b-dzt2   Ready    <none>   5m9s   v1.20.9-gke.1001
+    gke-cluster-pa-i4-data-k8s-default-pool-0bde709b-ksgh   Ready    <none>   5m9s   v1.20.9-gke.1001
+    gke-cluster-pa-i4-data-k8s-default-pool-0bde709b-vfvh   Ready    <none>   5m8s   v1.20.9-gke.1001
+    gke-cluster-pa-i4-data-k8s-default-pool-0bde709b-vtvk   Ready    <none>   5m9s   v1.20.9-gke.1001
     ```
 
     <br>
@@ -190,18 +190,18 @@ _____
     <br>
 
     ```shell
-    gcloud container clusters delete "cluster-smedina-k8s"
+    gcloud container clusters delete "cluster-pa-i4-data-k8s"
     ```
 
     *Output:*
     ```console
     gcloud container clusters delete "cluster-smedina-k8s"
     The following clusters will be deleted.
-    - [cluster-smedina-k8s] in [us-east1-c]
+    - [cluster-pa-i4-data-k8s] in [us-east1-c]
 
     Do you want to continue (Y/n)?  Y
 
-    Deleting cluster cluster-smedina-k8s...done. 
+    Deleting cluster cluster-pa-i4-data-k8s...done. 
     ```
     :point_right: *Importante: Confirme a DELEÇÃO com [Enter] ou [Y].*
 

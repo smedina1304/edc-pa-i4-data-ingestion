@@ -130,6 +130,10 @@ Seguem a etapas de instalação:
                 value: 'my_gcp'
         ```
 
+        :point_right: *Atenção: Observar que os logs estão sendo direcionados para uma pasta `airflow-logs` em um Bucket no GCS chamado `dl-techinical-apps`, é importante que esta estrutura tenha sido criada previamente para que o processo de logs do airflow funcione corretamente.*
+        <br>
+
+
     - Create initial user:
 
         ```yaml

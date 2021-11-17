@@ -27,9 +27,9 @@ _____
         region = us-east1
         zone = us-east1-c
         [core]
-        account = sergio.medina
+        account = [YOUR ACCOUNT]
         disable_usage_reporting = True
-        project = edc-igti-smedina
+        project = [YOUR PROJECT]
         ```
 
     - Criação do Cluster, antes realize as verificações e configurações, estando *"ok"* pode ser executado o exemplo abaixo:

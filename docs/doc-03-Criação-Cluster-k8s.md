@@ -43,13 +43,15 @@ _____
         <br>
         Foram selecionadas dois tipos de maquinas `e2-standard-2` ou `e2-standard-4` para criação do cluster no período de testes, é necessário avaliar o comportamento e a estabilidade mediante ao volume de dados e capacidade de processamento mais adequada para atendimento das expectativas de disponibilização de resultados.
         <br>
+        Outro ponto importante é que as configurações e recursos do GKE (Google Kubernetes Engine) sempre estão em atualização, então caso o comando abaixo retorne algum erro, utilize o processo de criação diretamente no GKE e solicite a 'linha de comando' antes de ativar o seu cluster, assim será possível verificar as alterações e corrigir o comando e manter o script o mais atualizado.
+        <br>
 
         ```shell
 
         gcloud /
         beta container --project "edc-igti-smedina" /
         clusters create "cluster-pa-i4-data-k8s" --zone "us-east1-c" /
-        --no-enable-basic-auth --cluster-version "1.20.9-gke.1001" /
+        --no-enable-basic-auth --cluster-version "1.21.5-gke.1302" /
         --release-channel "regular" --machine-type "e2-standard-2" /
         --image-type "COS_CONTAINERD" --disk-type "pd-standard" /
         --disk-size "100" --node-labels ies=igti,curso=edc /

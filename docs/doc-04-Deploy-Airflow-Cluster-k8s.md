@@ -196,7 +196,44 @@ Seguem a etapas de instalação:
     <br>
     <br>
 
-5. Delpoy do Airflow no Cluster k8s.
+
+5. Criando uma `Secret` com as credenciais para acesso aos recursos GCP principalmente ao Cloud Storage, onde estão os Buckets do Data Lake.
+
+    GCP - Credenciais de acesso via Arquivo JSON:
+    <br>
+
+    Carregando o conteúdo o arquivo com as chaves de acesso na `Secret` no namespace `airflow`:
+    
+    ```shell
+    kubectl create secret generic gcp-credentials-key --from-file=key.json=/path-file-service-account-gcp.json -n ariflow
+    ```
+    <br>
+
+    Para verificar se a `Secret` foi criada corretamente, utilize o comando abaixo:
+    <br>
+
+    ```shell
+    kubectl describe secret gcp-credentials -n airflow
+    ```
+
+    *Output:*<br>
+    *Observe que o conteúdo não será exposto*.
+    ```console
+    Name:         gcp-credentials-key
+    Namespace:    airflow
+    Labels:       <none>
+    Annotations:  <none>
+
+    Type:  Opaque
+
+    Data
+    ====
+    key.json:  2323 bytes        
+    ```
+    <br>
+    <br>
+
+6. Delpoy do Airflow no Cluster k8s.
 
     Após as preparações anteriores finalizadas executar o seguinte comando:
 
@@ -215,7 +252,7 @@ Seguem a etapas de instalação:
     <br>
     <br>
 
-6. Recuperar a `Fernet Key value`.
+7. Recuperar a `Fernet Key value`.
 
     Caso não tenha sido definido a `Fernet Key value` no arquivo `yaml`, como no caso deste procedimento, a mesma é gerada automaticamente e sendo necessário a sua utilização, é possível buscar o valor desta chave utilizando o comando abaixo:
 

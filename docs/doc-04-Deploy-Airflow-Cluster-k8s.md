@@ -197,7 +197,7 @@ Seguem a etapas de instalação:
     <br>
 
 
-5. Criando uma `Secret` com as credenciais para acesso aos recursos GCP principalmente ao Cloud Storage, onde estão os Buckets do Data Lake.
+5. Criando uma `Secret` com as credenciais para acesso aos recursos GCP ao Cloud Storage onde estão os Buckets do Data Lake, e ao Google Drive onde estão os arquivos de dados.
 
     GCP - Credenciais de acesso via Arquivo JSON:
     <br>
@@ -213,7 +213,7 @@ Seguem a etapas de instalação:
     <br>
 
     ```shell
-    kubectl describe secret gcp-credentials -n airflow
+    kubectl describe secret gcp-credentials-key -n airflow
     ```
 
     *Output:*<br>
@@ -231,7 +231,66 @@ Seguem a etapas de instalação:
     key.json:  2323 bytes        
     ```
     <br>
+
+    Google Drive - Configuirações Credenciais de acesso via OAUTH2:
     <br>
+
+    Carregando o conteúdo dos arquivos de configuração e credenciais na `Secret` no namespace `airflow`:
+    
+    ```shell
+    kubectl create secret generic oauth-settings-key --from-file=key.json=/path-file-settings.yaml -n ariflow
+    ```
+    <br>
+
+    ```shell
+    kubectl create secret generic oauth-credentials-key --from-file=key.json=/path-file-credentials.json -n ariflow
+    ```
+    <br>
+
+    Para verificar se a `Secret` foi criada corretamente, utilize o comando abaixo:
+    <br>
+
+    ```shell
+    kubectl describe secret oauth-settings-key -n airflow
+    ```
+
+    *Output:*<br>
+    *Observe que o conteúdo não será exposto*.
+    ```console
+    Name:         oauth-settings-key
+    Namespace:    airflow
+    Labels:       <none>
+    Annotations:  <none>
+
+    Type:  Opaque
+
+    Data
+    ====
+    key.json:  2323 bytes        
+    ```
+    <br>
+
+    ```shell
+    kubectl describe secret oauth-credentials-key -n airflow
+    ```
+
+    *Output:*<br>
+    *Observe que o conteúdo não será exposto*.
+    ```console
+    Name:         oauth-credentials-key
+    Namespace:    airflow
+    Labels:       <none>
+    Annotations:  <none>
+
+    Type:  Opaque
+
+    Data
+    ====
+    key.json:  2323 bytes        
+    ```
+    <br>
+    <br>
+
 
 6. Delpoy do Airflow no Cluster k8s.
 

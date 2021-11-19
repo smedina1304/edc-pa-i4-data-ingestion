@@ -190,7 +190,7 @@ Seguem a etapas de instalação:
 
 4. Airflow DAGs, criando uma pasta para armazenar as dags e um exemplo para teste de funcionalidade do airflow.
     <br>
-    Na pasta raiz do projeto foi criada uma pasta `airflow` e dentrou outra com o Nome `dags`.
+    Na pasta raiz do projeto foi criada uma pasta `airflow` e dentro outra com o Nome `dags`.
     <br>
     Foi adicionado um código de exemplo com o nome `example_taskflow_api_etl.py`, para testes e evidências de funcionamento do `airflow`.
     <br>

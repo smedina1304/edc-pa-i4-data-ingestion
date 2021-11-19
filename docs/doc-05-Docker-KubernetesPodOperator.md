@@ -68,7 +68,7 @@ Após a criação do Dockerfile e toda a estrutura de programas que serão execu
 <br>
 
 ```shell
-docker build -f Dockerfile -t smedina1304/runPodsPython:v1.0 .
+docker build -f Dockerfile -t smedina1304/run-pods-python:1.0 .
 ```
 
 <br>
@@ -78,7 +78,7 @@ Onde:
 
 - `-f Dockerfile` -> O parametro `-f` identifica qual é o arquido com as instruções de construção do container, normalmente utilizado quando o arquivo tem o nome diferente de `Dockerfile`, porem para este exempo o parametro foi deixado explicito para exemplificação do uso, mas para este caso não seria necessário.
 
-- `-t smedina1304/runPodsPython:v1.0` -> O parametro `-t` indica qual é a TAG de identificação da imagem do container, onde as informações que a compõem são: `[ID REPOSITORIO]/[ID CONTAINER]:[VERSAO]`, sendo `/` e `:` separadores. O [ID REPOSITORIO] é a identificação de onde o container será armazenado, por exemplo no `Docker Hub` ou `AWS`, porem se for apenas uma imagem local não será necessário. O [ID CONTAINER] é o nome de identificação do container e deve sempre ser informado. A [VERSAO] também chamado de `TAG` é onde se identifica a versão, também utilizado para fins de armazenamento. Atenção é necessário que todas as letras estejam em minusculo para todos os elementos informados no parametro `-t`.
+- `-t smedina1304/run-pods-python:1.0` -> O parametro `-t` indica qual é a TAG de identificação da imagem do container, onde as informações que a compõem são: `[ID REPOSITORIO]/[ID CONTAINER]:[VERSAO]`, sendo `/` e `:` separadores. O [ID REPOSITORIO] é a identificação de onde o container será armazenado, por exemplo no `Docker Hub` ou `AWS`, porem se for apenas uma imagem local não será necessário. O [ID CONTAINER] é o nome de identificação do container e deve sempre ser informado. A [VERSAO] também chamado de `TAG` é onde se identifica a versão, também utilizado para fins de armazenamento. Atenção é necessário que todas as letras estejam em minusculo para todos os elementos informados no parametro `-t`.
 
 - `.` --> Esta é o parametro que indica onde é o diretório base do processo de construção do container e neste caso indica o diretório corrente.
 
@@ -96,7 +96,7 @@ O retorno de ser semelhante ao abaixo:
 
 ```shell
 REPOSITORY                  TAG       IMAGE ID       CREATED          SIZE
-smedina1304/runPodsPython   v1.0      1fcc69fb574b   16 minutes ago   270MB   
+smedina1304/run-pods-python 1.0       1fcc69fb574b   16 minutes ago   270MB   
 ```
 
 <br>
@@ -132,7 +132,7 @@ Para este caso vamos utilizar o *[hub.docker.com](https://hub.docker.com/)*.
 Comando para executar o *push* (exemplo):
 
 ```shell
-docker push smedina1304/runPodsPython:v1.0
+docker push smedina1304/run-pods-python:1.0
 ```
 
 Após o comando verifique  no `Docker Hub` se a imagem foi devidamente atualizada.

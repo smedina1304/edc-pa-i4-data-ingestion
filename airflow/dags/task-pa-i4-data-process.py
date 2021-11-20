@@ -17,8 +17,12 @@ from airflow.models import Variable
 # {"PARAM_EXECUTION_DATE": "2021-11-08", "PARAM_LINE_ID": "101"}
 
 
-google_app_credentials = Variable.get(key='GOOGLE_APPLICATION_CREDENTIALS')
-google_oauth_settings = Variable.get(key='GOOGLE_OAUTH_SETTINGS_FILE')
+google_app_credentials = '/var/secrets/key.json'
+google_oauth_settings = '/var/secrets/settings.yaml'
+
+# google_app_credentials = Variable.get(key='GOOGLE_APPLICATION_CREDENTIALS')
+# google_oauth_settings = Variable.get(key='GOOGLE_OAUTH_SETTINGS_FILE')
+
 
 # ## Variaveis de Ambiente para o Pod, com base nos Parametros
 vars = {
@@ -74,7 +78,7 @@ with DAG(
         'email_on_retry': False,
         'max_active_runs': 1,
     },
-    description='Processamento de dados de Produção - 1.3a',
+    description='Processamento de dados de Produção - 1.3b',
     schedule_interval="@once",
     start_date=airflow.utils.dates.days_ago(1),
     catchup=False,

@@ -12,14 +12,14 @@ from airflow.kubernetes.secret import Secret
 # pip install install 'apache-airflow[kubernetes]'
 
 # ## Secrets oauth-settings
-# settings_volume = k8s.V1Volume(
-#     name='oauth-settings-key',
-#     secret=k8s.V1SecretVolumeSource(default_mode=600, secret_name="oauth-settings-key")
-# )
+settings_volume = k8s.V1Volume(
+    name='oauth-settings-key',
+    secret=k8s.V1SecretVolumeSource(default_mode=600, secret_name="oauth-settings-key")
+)
 
-# settings_volume_mount = k8s.V1VolumeMount(
-#     name='oauth-settings-key', mount_path='/var/secrets/settings.yaml', sub_path=None, read_only=True
-# )
+settings_volume_mount = k8s.V1VolumeMount(
+    name='oauth-settings-key', mount_path='/var/secrets/settings.yaml', sub_path=None, read_only=True
+)
 
 # ## Secrets oauth-credentials
 credentials_volume = k8s.V1Volume(
@@ -54,7 +54,7 @@ with DAG(
         'email_on_retry': False,
         'max_active_runs': 1,
     },
-    description='Processamento de dados de Produção - 1.0',
+    description='Processamento de dados de Produção - 1.0b',
     schedule_interval="@once",
     start_date=airflow.utils.dates.days_ago(1),
     catchup=False,

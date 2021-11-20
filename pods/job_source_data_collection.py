@@ -51,8 +51,9 @@ if __name__ == "__main__":
         # Parametros de credenciais de autenticação
         # gcp_credentials = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
         # oauth_settings_file = os.environ['GOOGLE_OAUTH_SETTINGS_FILE']
-        gcp_credentials = '/var/secrets/key.json'
-        oauth_settings_file = '/var/secrets/settings.yaml'
+        gcp_credentials = '/app/secrets/key.json'
+        oauth_settings_file = '/app/secrets/settings.yaml'
+        oauth_credentials_file = '/app/secrets/credentials.json'
 
     except KeyError as e:
         msg_error = f'Error ## {repr(e)} - Parameter not defined.'
@@ -86,6 +87,13 @@ if __name__ == "__main__":
         else:
             msg_error = f'ERRO ## Arquivo NÃO localizado: {oauth_settings_file}'
             print(msg_error)
+
+        # Se existe o arquivo no caminho definido
+        if os.path.exists(oauth_credentials_file):
+            print('OK ->','Arquivo disponível:',oauth_credentials_file)
+        else:
+            msg_error = f'ERRO ## Arquivo NÃO localizado: {oauth_credentials_file}'
+            print(msg_error)            
 
     # Se houve algum erro até este ponto é lançada uma exceção
     if msg_error is not None:

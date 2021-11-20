@@ -51,9 +51,9 @@ if __name__ == "__main__":
         # Parametros de credenciais de autenticação
         # gcp_credentials = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
         # oauth_settings_file = os.environ['GOOGLE_OAUTH_SETTINGS_FILE']
-        gcp_credentials = '/app/secrets/key.json'
-        oauth_settings_file = '/app/secrets/settings.yaml'
-        oauth_credentials_file = '/app/secrets/credentials.json'
+        gcp_credentials = '/var/secrets/gcp/key.json'
+        oauth_settings_file = '/var/secrets/settings/settings.yaml'
+        oauth_credentials_file = '/var/secrets/credentials/credentials.json'
 
     except KeyError as e:
         msg_error = f'Error ## {repr(e)} - Parameter not defined.'

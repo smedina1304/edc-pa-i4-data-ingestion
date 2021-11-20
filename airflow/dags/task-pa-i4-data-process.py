@@ -5,6 +5,7 @@ from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import Kubernete
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.kubernetes.secret import Secret
 
+# Airflow DAGs - Ingestão de dados do Processo Ind.
 # https://github.com/apache/airflow/issues/12760
 # https://github.com/VBhojawala/airflow/blob/k8s-docs/docs/apache-airflow-providers-cncf-kubernetes/operators.rst#mounting-secrets-as-volume
 
@@ -33,7 +34,7 @@ from airflow.kubernetes.secret import Secret
 # ## Secrets gcp-credentials
 gcp_volume = k8s.V1Volume(
     name='gcp-credentials-key',
-    secret=k8s.V1SecretVolumeSource(default_mode=600, secret_name="oauth-credentials-key")
+    secret=k8s.V1SecretVolumeSource(default_mode=600, secret_name="gcp-credentials-key")
 )
 
 gcp_volume_mount = k8s.V1VolumeMount(

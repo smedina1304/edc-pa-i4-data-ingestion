@@ -7,35 +7,35 @@ from airflow.kubernetes.secret import Secret
 
 # pip install install 'apache-airflow[kubernetes]'
 
-## Secrets oauth-settings
-settings_volume = k8s.V1Volume(
-    name='oauth-settings-key',
-    secret=k8s.V1SecretVolumeSource(default_mode=600, secret_name="oauth-settings-key")
-)
+# ## Secrets oauth-settings
+# settings_volume = k8s.V1Volume(
+#     name='oauth-settings-key',
+#     secret=k8s.V1SecretVolumeSource(default_mode=600, secret_name="oauth-settings-key")
+# )
 
-settings_volume_mount = k8s.V1VolumeMount(
-    name='oauth-settings-key', mount_path='/var/secrets/settings.yaml', sub_path=None, read_only=True
-)
+# settings_volume_mount = k8s.V1VolumeMount(
+#     name='oauth-settings-key', mount_path='/var/secrets/settings.yaml', sub_path=None, read_only=True
+# )
 
-## Secrets oauth-credentials
-credentials_volume = k8s.V1Volume(
-    name='oauth-credentials-key',
-    secret=k8s.V1SecretVolumeSource(default_mode=600, secret_name="oauth-credentials-key")
-)
+# ## Secrets oauth-credentials
+# credentials_volume = k8s.V1Volume(
+#     name='oauth-credentials-key',
+#     secret=k8s.V1SecretVolumeSource(default_mode=600, secret_name="oauth-credentials-key")
+# )
 
-credentials_volume_mount = k8s.V1VolumeMount(
-    name='oauth-credentials-key', mount_path='/var/secrets/credentials.json', sub_path=None, read_only=True
-)
+# credentials_volume_mount = k8s.V1VolumeMount(
+#     name='oauth-credentials-key', mount_path='/var/secrets/credentials.json', sub_path=None, read_only=True
+# )
 
-## Secrets gcp-credentials
-gcp_volume = k8s.V1Volume(
-    name='gcp-credentials-key',
-    secret=k8s.V1SecretVolumeSource(default_mode=600, secret_name="oauth-credentials-key")
-)
+# ## Secrets gcp-credentials
+# gcp_volume = k8s.V1Volume(
+#     name='gcp-credentials-key',
+#     secret=k8s.V1SecretVolumeSource(default_mode=600, secret_name="oauth-credentials-key")
+# )
 
-gcp_volume_mount = k8s.V1VolumeMount(
-    name='gcp-credentials-key', mount_path='/var/secrets/gcp/key.json', sub_path=None, read_only=True
-)
+# gcp_volume_mount = k8s.V1VolumeMount(
+#     name='gcp-credentials-key', mount_path='/var/secrets/gcp/key.json', sub_path=None, read_only=True
+# )
 
 
 # DAG - Definition
@@ -62,8 +62,8 @@ with DAG(
         image="docker.io/smedina1304/run-pods-python:1.0",
         env_vars={'PRG_NAME': './job_source_data_collection.py'},
         cmds=["/run_in_docker.sh"],
-        volume_mounts=[gcp_volume_mount, settings_volume_mount, credentials_volume_mount],
-        volumes=[gcp_volume_mount, settings_volume, credentials_volume],        
+#        volume_mounts=[gcp_volume_mount, settings_volume_mount, credentials_volume_mount],
+#        volumes=[gcp_volume_mount, settings_volume, credentials_volume],        
         name="task-pa-i4-data-process",
         task_id="task-pa-i4-data-process",
         image_pull_policy="Always",

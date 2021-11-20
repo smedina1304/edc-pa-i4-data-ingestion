@@ -58,7 +58,7 @@ gcp_volume = k8s.V1Volume(
 )
 
 gcp_volume_mount = k8s.V1VolumeMount(
-    name='gcp-credentials-key', mount_path='/var/secrets/gcp/key.json', sub_path=None, read_only=True
+    name='gcp-credentials-key', mount_path='/var/secrets/key.json', sub_path=None, read_only=True
 )
 
 
@@ -74,7 +74,7 @@ with DAG(
         'email_on_retry': False,
         'max_active_runs': 1,
     },
-    description='Processamento de dados de Produção - 1.3',
+    description='Processamento de dados de Produção - 1.3a',
     schedule_interval="@once",
     start_date=airflow.utils.dates.days_ago(1),
     catchup=False,
@@ -86,8 +86,8 @@ with DAG(
         image="docker.io/smedina1304/run-pods-python:1.0",
         env_vars=vars,
         cmds=["/run_in_docker.sh"],
-       volume_mounts=[gcp_volume_mount, settings_volume_mount, credentials_volume_mount],
-       volumes=[gcp_volume, settings_volume, credentials_volume],        
+        volume_mounts=[gcp_volume_mount, settings_volume_mount, credentials_volume_mount],
+        volumes=[gcp_volume, settings_volume, credentials_volume],        
         name="data_collect",
         task_id="data_collect",
         image_pull_policy="Always",

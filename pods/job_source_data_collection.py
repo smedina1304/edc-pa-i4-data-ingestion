@@ -49,8 +49,10 @@ if __name__ == "__main__":
         param_line_id = os.environ['PARAM_LINE_ID']
 
         # Parametros de credenciais de autenticação
-        gcp_credentials = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
-        oauth_settings_file = os.environ['GOOGLE_OAUTH_SETTINGS_FILE']
+        # gcp_credentials = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
+        # oauth_settings_file = os.environ['GOOGLE_OAUTH_SETTINGS_FILE']
+        gcp_credentials = '/var/secrets/key.json'
+        oauth_settings_file = '/var/secrets/settings.yaml'
 
     except KeyError as e:
         msg_error = f'Error ## {repr(e)} - Parameter not defined.'

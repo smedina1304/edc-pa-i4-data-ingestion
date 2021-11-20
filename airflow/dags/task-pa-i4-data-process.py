@@ -14,7 +14,7 @@ from airflow.kubernetes.secret import Secret
 # ## Secrets oauth-settings
 settings_volume = k8s.V1Volume(
     name='oauth-settings-key',
-    secret=k8s.V1SecretVolumeSource(default_mode=600, secret_name="oauth-settings-key")
+    secret=k8s.V1SecretVolumeSource(default_mode=384, secret_name="oauth-settings-key")
 )
 
 settings_volume_mount = k8s.V1VolumeMount(
@@ -24,7 +24,7 @@ settings_volume_mount = k8s.V1VolumeMount(
 # ## Secrets oauth-credentials
 credentials_volume = k8s.V1Volume(
     name='oauth-credentials-key',
-    secret=k8s.V1SecretVolumeSource(default_mode=600, secret_name="oauth-credentials-key")
+    secret=k8s.V1SecretVolumeSource(default_mode=384, secret_name="oauth-credentials-key")
 )
 
 credentials_volume_mount = k8s.V1VolumeMount(
@@ -34,7 +34,7 @@ credentials_volume_mount = k8s.V1VolumeMount(
 # ## Secrets gcp-credentials
 gcp_volume = k8s.V1Volume(
     name='gcp-credentials-key',
-    secret=k8s.V1SecretVolumeSource(default_mode=600, secret_name="gcp-credentials-key")
+    secret=k8s.V1SecretVolumeSource(default_mode=384, secret_name="gcp-credentials-key")
 )
 
 gcp_volume_mount = k8s.V1VolumeMount(
@@ -54,7 +54,7 @@ with DAG(
         'email_on_retry': False,
         'max_active_runs': 1,
     },
-    description='Processamento de dados de Produção - 1.1',
+    description='Processamento de dados de Produção - 1.1b',
     schedule_interval="@once",
     start_date=airflow.utils.dates.days_ago(1),
     catchup=False,

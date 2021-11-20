@@ -11,6 +11,21 @@ from airflow.kubernetes.secret import Secret
 
 # pip install install 'apache-airflow[kubernetes]'
 
+# Trigger DAG: {{ dag_run.conf }}.
+# {
+#     "PARAM_EXECUTION_DATE": "2021-11-08",
+#     "PARAM_LINE_ID": "101"
+# }
+
+
+# ## Variaveis de Ambiente para o Pod, com base nos Parametros
+vars = {
+    'PRG_NAME': './job_source_data_collection.py',
+    'PARAM_EXECUTION_DATE': '{{ dag_run.conf["PARAM_EXECUTION_DATE"] }}',
+    'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}',
+}
+
+
 # ## Secrets oauth-settings
 settings_volume = k8s.V1Volume(
     name='oauth-settings-key',
@@ -54,7 +69,7 @@ with DAG(
         'email_on_retry': False,
         'max_active_runs': 1,
     },
-    description='Processamento de dados de Produção - 1.1c',
+    description='Processamento de dados de Produção - 1.2',
     schedule_interval="@once",
     start_date=airflow.utils.dates.days_ago(1),
     catchup=False,
@@ -64,7 +79,7 @@ with DAG(
     data_collect = KubernetesPodOperator(
         namespace='airflow',
         image="docker.io/smedina1304/run-pods-python:1.0",
-        env_vars={'PRG_NAME': './job_source_data_collection.py'},
+        env_vars=vars,
         cmds=["/run_in_docker.sh"],
        volume_mounts=[gcp_volume_mount, settings_volume_mount, credentials_volume_mount],
        volumes=[gcp_volume, settings_volume, credentials_volume],        

@@ -37,7 +37,7 @@ settings_volume = k8s.V1Volume(
 )
 
 settings_volume_mount = k8s.V1VolumeMount(
-    name='oauth-settings-key', mount_path='/var/secrets/settings.yaml', sub_path=None, read_only=True
+    name='oauth-settings-key', mount_path='/var/secrets', sub_path=None, read_only=True
 )
 
 # ## Secrets oauth-credentials
@@ -47,7 +47,7 @@ credentials_volume = k8s.V1Volume(
 )
 
 credentials_volume_mount = k8s.V1VolumeMount(
-    name='oauth-credentials-key', mount_path='/var/secrets/credentials.json', sub_path=None, read_only=True
+    name='oauth-credentials-key', mount_path='/var/secrets', sub_path=None, read_only=True
 )
 
 # ## Secrets gcp-credentials
@@ -57,7 +57,7 @@ gcp_volume = k8s.V1Volume(
 )
 
 gcp_volume_mount = k8s.V1VolumeMount(
-    name='gcp-credentials-key', mount_path='/var/secrets/key.json', sub_path=None, read_only=True
+    name='gcp-credentials-key', mount_path='/var/secrets', sub_path=None, read_only=True
 )
 
 

@@ -17,11 +17,8 @@ from airflow.models import Variable
 # {"PARAM_EXECUTION_DATE": "2021-11-08", "PARAM_LINE_ID": "101"}
 
 
-google_app_credentials = '/var/secrets/key.json'
-google_oauth_settings = '/var/secrets/settings.yaml'
-
-# google_app_credentials = Variable.get(key='GOOGLE_APPLICATION_CREDENTIALS')
-# google_oauth_settings = Variable.get(key='GOOGLE_OAUTH_SETTINGS_FILE')
+google_app_credentials = Variable.get(key='GOOGLE_APPLICATION_CREDENTIALS')
+google_oauth_settings = Variable.get(key='GOOGLE_OAUTH_SETTINGS_FILE')
 
 
 # ## Variaveis de Ambiente para o Pod, com base nos Parametros
@@ -29,8 +26,8 @@ vars = {
     'PRG_NAME': './job_source_data_collection.py',
     'PARAM_EXECUTION_DATE': '{{ dag_run.conf["PARAM_EXECUTION_DATE"] }}',
     'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}',
-    'GOOGLE_APPLICATION_CREDENTIALS': google_app_credentials,
-    'GOOGLE_OAUTH_SETTINGS_FILE': google_oauth_settings,
+    # 'GOOGLE_APPLICATION_CREDENTIALS': google_app_credentials,
+    # 'GOOGLE_OAUTH_SETTINGS_FILE': google_oauth_settings,
 }
 
 print('Vars:', vars)
@@ -78,7 +75,7 @@ with DAG(
         'email_on_retry': False,
         'max_active_runs': 1,
     },
-    description='Processamento de dados de Produção - 1.3b',
+    description='Processamento de dados de Produção - 1.3c',
     schedule_interval="@once",
     start_date=airflow.utils.dates.days_ago(1),
     catchup=False,

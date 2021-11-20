@@ -18,6 +18,7 @@ from airflow.models import Variable
 #     "PARAM_LINE_ID": "101"
 # }
 
+print('Iniciando Programa.')
 
 # ## Variaveis de Ambiente para o Pod, com base nos Parametros
 vars = {
@@ -28,6 +29,7 @@ vars = {
     'GOOGLE_OAUTH_SETTINGS_FILE': Variable.get('GOOGLE_OAUTH_SETTINGS_FILE')
 }
 
+print('Vars:', vars)
 
 # ## Secrets oauth-settings
 settings_volume = k8s.V1Volume(
@@ -72,7 +74,7 @@ with DAG(
         'email_on_retry': False,
         'max_active_runs': 1,
     },
-    description='Processamento de dados de Produção - 1.2b',
+    description='Processamento de dados de Produção - 1.2c',
     schedule_interval="@once",
     start_date=airflow.utils.dates.days_ago(1),
     catchup=False,

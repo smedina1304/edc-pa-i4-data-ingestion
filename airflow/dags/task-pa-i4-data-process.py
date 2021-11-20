@@ -1,5 +1,6 @@
 import airflow
 from airflow import DAG
+from airflow.decorators import task
 from kubernetes.client import models as k8s
 from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
 from airflow.operators.dummy_operator import DummyOperator
@@ -15,15 +16,17 @@ from airflow.models import Variable
 # Trigger DAG: {{ dag_run.conf }}.
 # {"PARAM_EXECUTION_DATE": "2021-11-08", "PARAM_LINE_ID": "101"}
 
-print('Iniciando Programa.')
+
+google_app_credentials = Variable.get(key='GOOGLE_APPLICATION_CREDENTIALS')
+google_oauth_settings = Variable.get(key='GOOGLE_OAUTH_SETTINGS_FILE')
 
 # ## Variaveis de Ambiente para o Pod, com base nos Parametros
 vars = {
     'PRG_NAME': './job_source_data_collection.py',
     'PARAM_EXECUTION_DATE': '{{ dag_run.conf["PARAM_EXECUTION_DATE"] }}',
     'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}',
-    # 'GOOGLE_APPLICATION_CREDENTIALS': Variable.get('GOOGLE_APPLICATION_CREDENTIALS'),
-    # 'GOOGLE_OAUTH_SETTINGS_FILE': Variable.get('GOOGLE_OAUTH_SETTINGS_FILE')
+    'GOOGLE_APPLICATION_CREDENTIALS': google_app_credentials,
+    'GOOGLE_OAUTH_SETTINGS_FILE': google_oauth_settings,
 }
 
 print('Vars:', vars)
@@ -71,7 +74,7 @@ with DAG(
         'email_on_retry': False,
         'max_active_runs': 1,
     },
-    description='Processamento de dados de Produção - 1.2d',
+    description='Processamento de dados de Produção - 1.3',
     schedule_interval="@once",
     start_date=airflow.utils.dates.days_ago(1),
     catchup=False,

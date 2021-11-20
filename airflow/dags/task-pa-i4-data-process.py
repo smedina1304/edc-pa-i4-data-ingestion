@@ -13,10 +13,7 @@ from airflow.models import Variable
 # pip install install 'apache-airflow[kubernetes]'
 
 # Trigger DAG: {{ dag_run.conf }}.
-# {
-#     "PARAM_EXECUTION_DATE": "2021-11-08",
-#     "PARAM_LINE_ID": "101"
-# }
+# {"PARAM_EXECUTION_DATE": "2021-11-08", "PARAM_LINE_ID": "101"}
 
 print('Iniciando Programa.')
 
@@ -25,8 +22,8 @@ vars = {
     'PRG_NAME': './job_source_data_collection.py',
     'PARAM_EXECUTION_DATE': '{{ dag_run.conf["PARAM_EXECUTION_DATE"] }}',
     'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}',
-    'GOOGLE_APPLICATION_CREDENTIALS': Variable.get('GOOGLE_APPLICATION_CREDENTIALS'),
-    'GOOGLE_OAUTH_SETTINGS_FILE': Variable.get('GOOGLE_OAUTH_SETTINGS_FILE')
+    # 'GOOGLE_APPLICATION_CREDENTIALS': Variable.get('GOOGLE_APPLICATION_CREDENTIALS'),
+    # 'GOOGLE_OAUTH_SETTINGS_FILE': Variable.get('GOOGLE_OAUTH_SETTINGS_FILE')
 }
 
 print('Vars:', vars)

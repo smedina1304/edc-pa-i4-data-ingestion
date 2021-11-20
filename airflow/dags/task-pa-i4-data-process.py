@@ -4,6 +4,7 @@ from kubernetes.client import models as k8s
 from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.kubernetes.secret import Secret
+from airflow.models import Variable
 
 # Airflow DAGs - Ingestão de dados do Processo Ind.
 # https://github.com/apache/airflow/issues/12760
@@ -23,6 +24,8 @@ vars = {
     'PRG_NAME': './job_source_data_collection.py',
     'PARAM_EXECUTION_DATE': '{{ dag_run.conf["PARAM_EXECUTION_DATE"] }}',
     'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}',
+    'GOOGLE_APPLICATION_CREDENTIALS': Variable.get('GOOGLE_APPLICATION_CREDENTIALS'),
+    'GOOGLE_OAUTH_SETTINGS_FILE': Variable.get('GOOGLE_OAUTH_SETTINGS_FILE')
 }
 
 
@@ -69,7 +72,7 @@ with DAG(
         'email_on_retry': False,
         'max_active_runs': 1,
     },
-    description='Processamento de dados de Produção - 1.2',
+    description='Processamento de dados de Produção - 1.2b',
     schedule_interval="@once",
     start_date=airflow.utils.dates.days_ago(1),
     catchup=False,

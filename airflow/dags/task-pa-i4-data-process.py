@@ -33,21 +33,21 @@ print('Vars:', vars)
 # ## Secrets oauth-settings
 settings_volume = k8s.V1Volume(
     name='oauth-settings-key',
-    secret=k8s.V1SecretVolumeSource(default_mode=384, secret_name="oauth-settings-key")
+    secret=k8s.V1SecretVolumeSource(secret_name="oauth-settings-key")
 )
 
 settings_volume_mount = k8s.V1VolumeMount(
-    name='oauth-settings-key', mount_path='/var/secrets/settings.yaml', sub_path=None, read_only=True
+    name='oauth-settings-key', mount_path='/var/secrets/settings.yaml', sub_path=None, read_only=False
 )
 
 # ## Secrets oauth-credentials
 credentials_volume = k8s.V1Volume(
     name='oauth-credentials-key',
-    secret=k8s.V1SecretVolumeSource(default_mode=384, secret_name="oauth-credentials-key")
+    secret=k8s.V1SecretVolumeSource(secret_name="oauth-credentials-key")
 )
 
 credentials_volume_mount = k8s.V1VolumeMount(
-    name='oauth-credentials-key', mount_path='/var/secrets/credentials.json', sub_path=None, read_only=True
+    name='oauth-credentials-key', mount_path='/var/secrets/credentials.json', sub_path=None, read_only=False
 )
 
 # ## Secrets gcp-credentials
@@ -73,7 +73,7 @@ with DAG(
         'email_on_retry': False,
         'max_active_runs': 1,
     },
-    description='Processamento de dados de Produção - 1.3e',
+    description='Processamento de dados de Produção - 1.3f',
     schedule_interval="@once",
     start_date=airflow.utils.dates.days_ago(1),
     catchup=False,

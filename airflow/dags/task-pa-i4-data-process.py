@@ -22,14 +22,14 @@ from airflow.kubernetes.secret import Secret
 # )
 
 # ## Secrets oauth-credentials
-# credentials_volume = k8s.V1Volume(
-#     name='oauth-credentials-key',
-#     secret=k8s.V1SecretVolumeSource(default_mode=600, secret_name="oauth-credentials-key")
-# )
+credentials_volume = k8s.V1Volume(
+    name='oauth-credentials-key',
+    secret=k8s.V1SecretVolumeSource(default_mode=600, secret_name="oauth-credentials-key")
+)
 
-# credentials_volume_mount = k8s.V1VolumeMount(
-#     name='oauth-credentials-key', mount_path='/var/secrets/credentials.json', sub_path=None, read_only=True
-# )
+credentials_volume_mount = k8s.V1VolumeMount(
+    name='oauth-credentials-key', mount_path='/var/secrets/credentials.json', sub_path=None, read_only=True
+)
 
 # ## Secrets gcp-credentials
 gcp_volume = k8s.V1Volume(
@@ -54,7 +54,7 @@ with DAG(
         'email_on_retry': False,
         'max_active_runs': 1,
     },
-    description='Processamento de dados de Produção',
+    description='Processamento de dados de Produção - 1.0',
     schedule_interval="@once",
     start_date=airflow.utils.dates.days_ago(1),
     catchup=False,

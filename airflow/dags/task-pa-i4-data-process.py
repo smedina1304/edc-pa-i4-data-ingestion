@@ -72,6 +72,7 @@ with DAG(
         get_logs=True,
     )
 
+data_collect
 
 
 

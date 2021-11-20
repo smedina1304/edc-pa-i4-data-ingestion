@@ -238,12 +238,12 @@ Seguem a etapas de instalação:
     Carregando o conteúdo dos arquivos de configuração e credenciais na `Secret` no namespace `airflow`:
     
     ```shell
-    kubectl create secret generic oauth-settings-key --from-file=key.json=secrets/settings.yaml -n airflow
+    kubectl create secret generic oauth-settings-key --from-file=settings.yaml=secrets/settings.yaml -n airflow
     ```
     <br>
 
     ```shell
-    kubectl create secret generic oauth-credentials-key --from-file=key.json=secrets/credentials.json -n airflow
+    kubectl create secret generic oauth-credentials-key --from-file=credentials.json=secrets/credentials.json -n airflow
     ```
     <br>
 

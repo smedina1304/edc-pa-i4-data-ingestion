@@ -12,6 +12,7 @@ from airflow.models import Variable
 # https://github.com/VBhojawala/airflow/blob/k8s-docs/docs/apache-airflow-providers-cncf-kubernetes/operators.rst#mounting-secrets-as-volume
 
 # pip install install 'apache-airflow[kubernetes]'
+# pip install google-cloud-storage
 
 # Trigger DAG: {{ dag_run.conf }}.
 # {"PARAM_EXECUTION_DATE": "2021-11-08", "PARAM_LINE_ID": "101"}

@@ -4,6 +4,8 @@ import pytz
 from datetime import datetime
 from pydrive2.auth import GoogleAuth
 from pydrive2.drive import GoogleDrive
+from google.cloud import storage
+from oauth2client.client import GoogleCredentials
 
 
 # Declaração de variaveis do contexto
@@ -13,6 +15,9 @@ gcp_credentials = None              # Parametro de credenciais GCP via Secrets k
 oauth_settings_file = None          # Parametro de credenciais OAUTH para Google Drive via Secrets k8s
 dt_current = None                   # Data e Hora corrente
 
+# Cloud Storage - Bucket Name
+storage_client = storage.Client()
+bucket = storage_client.get_bucket("edc-pa-i4-data") 
 
 # Função para retornar a lista de objetos do Google Drive
 def getObjectList(gauth, drive, folderId):
@@ -55,6 +60,7 @@ if __name__ == "__main__":
         oauth_settings_file = '/app/secrets/settings.yaml'
         oauth_credentials_file = '/app/secrets/credentials.json'
 
+        
     except KeyError as e:
         msg_error = f'Error ## {repr(e)} - Parameter not defined.'
 
@@ -178,9 +184,21 @@ if __name__ == "__main__":
                     file_name = None
                     file_id = None
 
-                #if (file_name is not None and file_id is not None):
-                print("Folder:", dir['title'].upper(), "- File:", file_name, "- ID:", file_id)
+                if (file_name is not None and file_id is not None):
+                    print("Folder:", dir['title'].lower(), "- File:", file_name, "- ID:", file_id)
 
+                    # Referência do Arquivo
+                    file = drive.CreateFile({'id': file_id})
+
+                    # Download do Arquivo em formato String
+                    file_content = file.GetContentString()
+
+                    # Definição path de gravação do arquivo
+                    blob=bucket.blob(f"raw-data-zone/{dir['title'].lower()}/{file_name}")
+
+                    # Upload do Arquivo
+                    blob.upload_from_string(data=file_content, content_type='text/csv')
+                    
 
         except Exception as e:
             msg_error = f'ERRO ## GOOGLE DRIVE OAUTH (settings_file={oauth_settings_file}) - {repr(e)}'

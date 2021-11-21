@@ -28,7 +28,7 @@ As pastas deste projeto estão organizadas da seguinte forma:
         - `images` - Imagens referenciadas das documentações e procedimentos deste projeto.
         - `ipynb`- Arquivos do `Jupyter Notebook` utilizados para verificar ou analizar pontos necessários para o desenvolvimentos deste projeto.
     - `pods` - Programas ou Scripts Python executados em cada etapa do pipeline em um container Docker.
-    - `sh-infra` - Pasta que contém os *'shell scripts'* utilizados para criação e manuteção dos recursos de infraestrutura em cloud.
+    - `sh-infra` - Pasta que contém os *'shell scripts'* utilizados para criação e manutenção dos recursos de infraestrutura em cloud.
 
 <br>
 <br>

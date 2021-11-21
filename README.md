@@ -22,11 +22,15 @@ Este projeto tem por finalidade documentar todas as estapas técnicas realizadas
 As pastas deste projeto estão organizadas da seguinte forma:
 
 - `root`
+    - `airflow` - Configuração de Deploy e DAGs para o Airflow
+        - `dags` - Código Fonte das DAGs processadas no Airflow
     - `docs` - Documentação gerada no formato `.md`, `.docx` ou `.pdf` para detalhamento e suporte conceitual deste projeto.
         - `images` - Imagens referenciadas das documentações e procedimentos deste projeto.
         - `ipynb`- Arquivos do `Jupyter Notebook` utilizados para verificar ou analizar pontos necessários para o desenvolvimentos deste projeto.
+    - `pods` - Programas ou Scripts Python executados em cada etapa do pipeline em um container Docker.
     - `sh-infra` - Pasta que contém os *'shell scripts'* utilizados para criação e manuteção dos recursos de infraestrutura em cloud.
 
+<br>
 <br>
 
 ### Consulte os tópicos abaixo relacionados para detalhamento de cada etapa realizada:
@@ -41,6 +45,15 @@ As pastas deste projeto estão organizadas da seguinte forma:
 
 3. Criação do Cluster Kubernetes (k8s) em Cloud.
     >.\docs\doc-03-Criação-Cluster-k8s.md
+<br>
+
+4. Deploy do Airflow no Cluster k8s.
+    > .\docs\doc-04-Deploy-Airflow-Cluster-k8s.md
+<br>
+
+5. Criação do Docker para processos executados em PODs no k8s.
+    > .\docs\doc-05-Docker-KubernetesPodOperator.md
+<br>
 <br>
 
 ### Repositórios Github usados como referência de pesquisa:

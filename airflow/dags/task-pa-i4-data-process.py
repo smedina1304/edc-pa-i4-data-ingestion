@@ -20,17 +20,6 @@ from airflow.models import Variable
 # google_app_credentials = Variable.get(key='GOOGLE_APPLICATION_CREDENTIALS')
 # google_oauth_settings = Variable.get(key='GOOGLE_OAUTH_SETTINGS_FILE')
 
-# ## Variaveis de Ambiente para o Pod, com base nos Parametros
-# vars = {
-#     'PRG_NAME': './job_source_data_collection.py',
-#     'PARAM_EXECUTION_DATE': '{{ dag_run.conf["PARAM_EXECUTION_DATE"] }}',
-#     'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}',
-#     # 'GOOGLE_APPLICATION_CREDENTIALS': f'{google_app_credentials}',
-#     # 'GOOGLE_OAUTH_SETTINGS_FILE': f'{google_oauth_settings}',
-# }
-
-# print('Vars:', vars)
-
 # ## Secrets oauth-settings
 settings_volume = k8s.V1Volume(
     name='oauth-settings-key',
@@ -87,9 +76,7 @@ with DAG(
         env_vars={
             'PRG_NAME': './job_source_data_collection.py',
             'PARAM_EXECUTION_DATE': '{{ dag_run.conf["PARAM_EXECUTION_DATE"] }}',
-            'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}',
-            # 'GOOGLE_APPLICATION_CREDENTIALS': f'{google_app_credentials}',
-            # 'GOOGLE_OAUTH_SETTINGS_FILE': f'{google_oauth_settings}',
+            'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}'
         },
         cmds=["/run_in_docker.sh"],
         volume_mounts=[gcp_volume_mount, settings_volume_mount, credentials_volume_mount],
@@ -108,8 +95,7 @@ with DAG(
         env_vars={
             'PRG_NAME': './job_dataop_cleaning_preparation.py',
             'PARAM_EXECUTION_DATE': '{{ dag_run.conf["PARAM_EXECUTION_DATE"] }}',
-            'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}',
-            #'GOOGLE_APPLICATION_CREDENTIALS': '/var/secrets/gcp/key.json'
+            'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}'
         },
         cmds=["/run_in_docker.sh"],
         volume_mounts=[gcp_volume_mount, settings_volume_mount, credentials_volume_mount],
@@ -122,4 +108,25 @@ with DAG(
         get_logs=True,
     )
 
-data_collect >> dataop_cleaning
+
+    dataprod_cleaning = KubernetesPodOperator(
+        namespace='airflow',
+        image="docker.io/smedina1304/run-pods-python:1.0",
+        env_vars={
+            'PRG_NAME': './job_dataprod_cleaning_preparation.py',
+            'PARAM_EXECUTION_DATE': '{{ dag_run.conf["PARAM_EXECUTION_DATE"] }}',
+            'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}'
+        },
+        cmds=["/run_in_docker.sh"],
+        volume_mounts=[gcp_volume_mount, settings_volume_mount, credentials_volume_mount],
+        volumes=[gcp_volume, settings_volume, credentials_volume],        
+        name="dataprod_cleaning",
+        task_id="dataprod_cleaning",
+        image_pull_policy="Always",
+        is_delete_operator_pod=True,
+        in_cluster=True,
+        get_logs=True,
+    )
+
+
+data_collect >> [dataop_cleaning, dataprod_cleaning]

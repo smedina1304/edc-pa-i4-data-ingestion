@@ -122,8 +122,4 @@ with DAG(
         get_logs=True,
     )
 
-data_collect
-
-
-
-
+data_collect > dataop_cleaning

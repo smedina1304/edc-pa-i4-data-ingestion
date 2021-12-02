@@ -76,15 +76,15 @@ class utilGCS:
         """        
         if pathName is not None:
             if self.__debugMode:
-                print('SEARCHING TO DELETE:', pathName)
+                print('DEBUG ->','SEARCHING TO DELETE:', pathName)
             blobs = self.bucket.list_blobs(prefix=pathName)
             for blob in blobs:
                 if blob.exists():
                     if self.__debugMode:
-                        print('DELETE:',blob.path)
+                        print('DEBUG ->','DELETE:',blob.path)
                     blob.delete()
         else:
-            print('ERROR: pathName is None!')
+            print('ERROR ->','ERROR: pathName is None!')
 
 
     
@@ -123,7 +123,7 @@ class utilGCS:
             # Converte para o Dataframe em Pandas
             df = pd.read_csv(byte_stream, sep=sep)
         except Exception as e:
-            print("Exception:", e)
+            print('ERROR ->',"Exception:", e)
 
         return df
 
@@ -154,7 +154,7 @@ class utilGCS:
         )
 
         if self.__debugMode:
-            print("SUCCESS:", path)
+            print('DEBUG ->',"SUCCESS:", path)
 
 
     

@@ -122,4 +122,4 @@ with DAG(
         get_logs=True,
     )
 
-data_collect > dataop_cleaning
+data_collect >> dataop_cleaning

@@ -37,8 +37,8 @@ if __name__ == "__main__":
         #param_line_id = os.environ['PARAM_LINE_ID']
 
         # Parametros de credenciais de autenticação
-        gcp_credentials = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
-        # gcp_credentials = '/var/secrets/gcp/key.json'
+        #gcp_credentials = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
+        gcp_credentials = '/var/secrets/gcp/key.json'
 
         
     except KeyError as e:

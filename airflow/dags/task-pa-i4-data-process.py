@@ -109,7 +109,7 @@ with DAG(
             'PRG_NAME': './job_dataop_cleaning_preparation.py',
             'PARAM_EXECUTION_DATE': '{{ dag_run.conf["PARAM_EXECUTION_DATE"] }}',
             'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}',
-            'GOOGLE_APPLICATION_CREDENTIALS': '/var/secrets/gcp/key.json'
+            #'GOOGLE_APPLICATION_CREDENTIALS': '/var/secrets/gcp/key.json'
         },
         cmds=["/run_in_docker.sh"],
         volume_mounts=[gcp_volume_mount, settings_volume_mount, credentials_volume_mount],

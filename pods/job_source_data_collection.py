@@ -130,7 +130,7 @@ if __name__ == "__main__":
 
     print('\n')
 
-    ## Validação da Data Source
+    ## Validação da Linha
 
     # Se nenhum erro reportado
     if msg_error is None:    

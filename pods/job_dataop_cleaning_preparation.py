@@ -95,7 +95,7 @@ if __name__ == "__main__":
 
     print('\n')
 
-    ## Inicio do processo de preparação e limpesa
+    ## Inicio do processo de preparação e limpeza
 
     # Se nenhum erro reportado
     if msg_error is None:

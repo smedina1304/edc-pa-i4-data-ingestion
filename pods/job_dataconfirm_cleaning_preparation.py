@@ -124,8 +124,8 @@ if __name__ == "__main__":
             # Define os tipos de cada coluna
             df_dataconfirm['DTAPONT']   = pd.to_datetime(df_dataconfirm['DTAPONT'])
             df_dataconfirm['LOTE']      = df_dataconfirm['LOTE'].astype(str)
-            df_dataconfirm['PACKID']    = df_dataconfirm['PACKID'].astype(int)
-            df_dataconfirm['UNIDADES']  = df_dataconfirm['UNIDADES'].astype(int)
+            df_dataconfirm['PACKID']    = df_dataconfirm['PACKID'].astype('int16')
+            df_dataconfirm['UNIDADES']  = df_dataconfirm['UNIDADES'].astype('int16')
             df_dataconfirm['KGPACK']    = df_dataconfirm['KGPACK'].astype(float)
             df_dataconfirm['KGUNMED']   = df_dataconfirm['KGUNMED'].astype(float)
 

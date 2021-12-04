@@ -114,7 +114,7 @@ if __name__ == "__main__":
             df_dataop['LOTEFAB'] = df_dataop['LOTEFAB'].astype(str)
             df_dataop['DTINI'] = pd.to_datetime(df_dataop['DTINI'])
             df_dataop['DTFIM'] = pd.to_datetime(df_dataop['DTFIM'])
-            df_dataop['QTDPLAN'] = df_dataop['QTDPLAN'].astype(int)
+            df_dataop['QTDPLAN'] = df_dataop['QTDPLAN'].astype('int32')
 
             # Definindo a Data de Produção DTPROD
             df_dataop.insert(0, 'DTPROD', None)

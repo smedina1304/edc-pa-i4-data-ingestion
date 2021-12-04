@@ -144,13 +144,13 @@ if __name__ == "__main__":
 
                 # Define os tipos de cada coluna
                 df_dataprod['OP'] = df_dataprod['OP'].astype(str)
-                df_dataprod['LINE'] = df_dataprod['LINE'].astype(int)
+                df_dataprod['LINE'] = df_dataprod['LINE'].astype('int16')
                 df_dataprod['LINE'] = df_dataprod['LINE'].astype(str)
                 df_dataprod['TIMESTAMP'] = pd.to_datetime(df_dataprod['TIMESTAMP'])
                 df_dataprod['BATCH'] = df_dataprod['BATCH'].astype(str)
                 df_dataprod['TIMER'] = df_dataprod['TIMER'].astype(str)
                 df_dataprod['TOTMIN'] = df_dataprod['TOTMIN'].astype(float)
-                df_dataprod['STSID'] = df_dataprod['STSID'].astype(int)
+                df_dataprod['STSID'] = df_dataprod['STSID'].astype('int16')
                 df_dataprod['STSDS'] = df_dataprod['STSDS'].astype(str)
                 df_dataprod['PC'] = df_dataprod['PC'].astype(float)
                 df_dataprod['GOOD'] = df_dataprod['GOOD'].astype(float)

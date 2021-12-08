@@ -176,7 +176,7 @@ if __name__ == "__main__":
                 gcs.delete_blob(pathName=f"processing-zone/{source}/DTPROD={param_execution_date}")
 
                 # Gravando na Processing-Zone
-                gcs.write_pandas_to_parquet(path=f"edc-pa-i4-data/processing-zone/{source}", df=df_dataprod, partitionCols=['DTPROD'])
+                gcs.write_pandas_to_parquet(path=f"edc-pa-i4-data/processing-zone/{source}", df=df_dataprod, partitionCols=['DTPROD','LINE'])
 
             # Se houve algum erro até este ponto é lançada uma exceção
             if msg_error is not None:

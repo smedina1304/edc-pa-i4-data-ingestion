@@ -169,6 +169,9 @@ if __name__ == "__main__":
                 # Seleciona apenas o periodo referente ao DTPROD
                 df_dataprod = df_dataprod.loc[ df_dataprod['DTPROD'] == param_execution_date ]
 
+                # Columns Name
+                df_dataprod.rename(columns = {'PC':'QTDPCS', 'GOOD':'QTDGOOD', 'REJECT':'QTDREJECT' }, inplace = True)            
+
                 # reindex
                 df_dataprod = df_dataprod.reset_index(drop=True)
 

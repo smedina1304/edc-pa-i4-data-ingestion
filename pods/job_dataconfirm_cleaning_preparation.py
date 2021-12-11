@@ -140,7 +140,7 @@ if __name__ == "__main__":
             df_dataconfirm['IDTURNO'] = df_dataconfirm['IDTURNO'].astype(int)
 
             # Columns Name
-            df_dataconfirm.rename(columns = {'LOTE':'BATCH', 'UNIDADES':'UN'}, inplace = True)            
+            df_dataconfirm.rename(columns = {'LOTE':'BATCH', 'UNIDADES':'QTUN'}, inplace = True)            
 
             # Seleciona apenas o periodo referente ao DTPROD
             df_dataconfirm = df_dataconfirm.loc[ df_dataconfirm['DTPROD'] == param_execution_date ]

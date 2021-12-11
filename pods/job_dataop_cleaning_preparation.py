@@ -121,6 +121,9 @@ if __name__ == "__main__":
             df_dataop['DTPROD'] = df_dataop.apply(lambda row:func.compate_dtprod(row['DTINI'], row['DTFIM']),axis=1)
             df_dataop['DTPROD'] = df_dataop['DTPROD'].astype(str)
 
+            # Columns Name
+            df_dataop.rename(columns = {'LOTEFAB':'BATCH'}, inplace = True)
+
             # save parquet - gcp
             # Verifica se existe arquivos no path para deletar
             gcs.delete_blob(pathName=f"processing-zone/{source}/DTPROD={param_execution_date}")

@@ -108,12 +108,12 @@ if __name__ == "__main__":
         folder = f"{bucketName}/processing-zone/{source}"
         df_dataprod = gcs.read_parquet_to_pandas(path=folder, filters=[('DTPROD', '=', param_execution_date)])
 
-        # Definindo o tipo para DTPROD e LINEpara os dataframes
-        df_dataprod['DTPROD'] = df_dataprod['DTPROD'].astype(str)
-        df_dataprod['LINE'] = df_dataprod['LINE'].astype(str)
-
-
+        # # Verifica se os DF foi carregado com dados
         if (df_dataprod is not None):
+
+            # Definindo o tipo para DTPROD e LINEpara os dataframes
+            df_dataprod['DTPROD'] = df_dataprod['DTPROD'].astype(str)
+            df_dataprod['LINE'] = df_dataprod['LINE'].astype(str)
 
             # OEE-LINE
             # Consolidando dados de registro de Produção por status da linha

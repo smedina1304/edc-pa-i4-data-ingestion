@@ -148,4 +148,26 @@ with DAG(
         get_logs=True,
     )
 
-data_collect >> [dataop_cleaning, dataprod_cleaning, dataconfirm_cleaning]
+
+    mesprod_consumer = KubernetesPodOperator(
+        namespace='airflow',
+        image="docker.io/smedina1304/run-pods-python:1.0",
+        env_vars={
+            'PRG_NAME': './job_mesprod_consumer.py',
+            'PARAM_EXECUTION_DATE': '{{ dag_run.conf["PARAM_EXECUTION_DATE"] }}',
+            'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}'
+        },
+        cmds=["/run_in_docker.sh"],
+        volume_mounts=[gcp_volume_mount, settings_volume_mount, credentials_volume_mount],
+        volumes=[gcp_volume, settings_volume, credentials_volume],        
+        name="mesprod_consumer",
+        task_id="mesprod_consumer",
+        image_pull_policy="Always",
+        is_delete_operator_pod=True,
+        in_cluster=True,
+        get_logs=True,
+    )
+
+
+
+data_collect >> [dataop_cleaning, dataprod_cleaning, dataconfirm_cleaning] >> mesprod_consumer

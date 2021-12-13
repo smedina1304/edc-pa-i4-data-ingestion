@@ -63,7 +63,7 @@ with DAG(
         'email_on_retry': False,
         'max_active_runs': 1,
     },
-    description='Processamento de dados de Produção - 3.0',
+    description='Processamento de dados de Produção - 3.1',
     schedule_interval="@once",
     start_date=airflow.utils.dates.days_ago(1),
     catchup=False,
@@ -189,4 +189,4 @@ with DAG(
     )
 
 
-data_collect >> [dataop_cleaning, dataprod_cleaning, dataconfirm_cleaning] >> mesprod_consumer
+data_collect >> [dataop_cleaning, dataprod_cleaning, dataconfirm_cleaning] >> mesprod_consumer >> mesoee_consumer

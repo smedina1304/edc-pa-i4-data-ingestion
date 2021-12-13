@@ -234,6 +234,7 @@ if __name__ == "__main__":
 
             
         else:
-            msg_error = f'ERROR -> Dataframe dataop, dataconfirm or dataprod is NULL for DTPROD={param_execution_date}'
-            raise Exception( msg_error )
+            msg_error = f'ERROR: Dataframe dataop, dataconfirm or dataprod is NULL for DTPROD={param_execution_date}'
+            #raise Exception( msg_error )
+            print( "DEBUG ->", msg_error )
             

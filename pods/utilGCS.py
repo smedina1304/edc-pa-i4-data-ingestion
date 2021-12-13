@@ -167,22 +167,26 @@ class utilGCS:
         - filters: (lista de filtros para seleção no padrão Parquet)
         """ 
         dataset = None
+        df = None
 
-        if filters is not None:
-            dataset = pq.ParquetDataset(
-                path_or_paths=path, 
-                filesystem=self.gs,
-                filters=filters
-            #    filters=[('DTPROD', '=', '2021-11-08')]
-            #    use_threads=True
-            )
-        else:
-            dataset = pq.ParquetDataset(
-                path_or_paths=path, 
-                filesystem=self.gs
-            )              
+        try:
+            if filters is not None:
+                dataset = pq.ParquetDataset(
+                    path_or_paths=path, 
+                    filesystem=self.gs,
+                    filters=filters
+                #    filters=[('DTPROD', '=', '2021-11-08')]
+                #    use_threads=True
+                )
+            else:
+                dataset = pq.ParquetDataset(
+                    path_or_paths=path, 
+                    filesystem=self.gs
+                )              
 
-        df = dataset.read_pandas().to_pandas()
+            df = dataset.read_pandas().to_pandas()
+        except:
+            df = None
 
         return df
 

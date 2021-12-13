@@ -126,7 +126,7 @@ if __name__ == "__main__":
         df_dataprod['LINE'] = df_dataprod['LINE'].astype(str)
 
 
-        if (df_dataop is not None) and (df_dataconfirm is not None) and (df_dataprod is not df_dataprod):
+        if (df_dataop is not None) and (df_dataconfirm is not None) and (df_dataprod is not None):
 
             # Copiando o DF dataop
             df_prod = df_dataop.copy()

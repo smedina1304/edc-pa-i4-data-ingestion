@@ -118,15 +118,16 @@ if __name__ == "__main__":
         folder = f"{bucketName}/processing-zone/{source}"
         df_dataprod = gcs.read_parquet_to_pandas(path=folder, filters=[('DTPROD', '=', param_execution_date)])
 
-        # Definindo o tipo para DTPROD e LINEpara os dataframes
-        df_dataop['DTPROD'] = df_dataop['DTPROD'].astype(str)
-        df_dataconfirm['DTPROD'] = df_dataconfirm['DTPROD'].astype(str)        
-        df_dataprod['DTPROD'] = df_dataprod['DTPROD'].astype(str)
-
-        df_dataprod['LINE'] = df_dataprod['LINE'].astype(str)
-
-
+        # Verifica se os DF foram carregados com dados
         if (df_dataop is not None) and (df_dataconfirm is not None) and (df_dataprod is not None):
+
+            # Definindo o tipo para DTPROD e LINE para os dataframes
+            df_dataop['DTPROD'] = df_dataop['DTPROD'].astype(str)
+            df_dataconfirm['DTPROD'] = df_dataconfirm['DTPROD'].astype(str)        
+            df_dataprod['DTPROD'] = df_dataprod['DTPROD'].astype(str)
+            df_dataprod['LINE'] = df_dataprod['LINE'].astype(str)
+
+
 
             # Copiando o DF dataop
             df_prod = df_dataop.copy()

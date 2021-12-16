@@ -17,7 +17,6 @@ dt_current = None                   # Data e Hora corrente
 
 # Cloud Storage - Bucket Name
 storage_client = storage.Client()
-bucket = storage_client.get_bucket("edc-pa-i4-data") 
 
 # Função para retornar a lista de objetos do Google Drive
 def getObjectList(gauth, drive, folderId):
@@ -53,6 +52,10 @@ if __name__ == "__main__":
         # Parametro de definição do ID da linha de produção
         param_line_id = os.environ['PARAM_LINE_ID']
 
+        # Parametro de definição do Projeto e Bucket GCS
+        param_project_id = os.environ['PARAM_PROJECT_ID']
+        param_bucket_name = os.environ['PARAM_BUCKET_NAME']        
+
         # Parametros de credenciais de autenticação
         # gcp_credentials = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
         # oauth_settings_file = os.environ['GOOGLE_OAUTH_SETTINGS_FILE']
@@ -73,6 +76,8 @@ if __name__ == "__main__":
     else:
         # Entrada de parametros
         print('### Entrada de Parametros.')
+        print('OK ->','PARAM_PROJECT_ID:',param_project_id)
+        print('OK ->','PARAM_BUCKET_NAME:',param_bucket_name)
         print('OK ->','PARAM_EXECUTION_DATE:',param_execution_date)
         print('OK ->','PARAM_LINE_ID',param_line_id)
         print('OK ->','GOOGLE_APPLICATION_CREDENTIALS',gcp_credentials)
@@ -106,6 +111,9 @@ if __name__ == "__main__":
         raise Exception( msg_error )
 
     print('\n')
+
+    ## Bucket - Cloud Storage
+    bucket = storage_client.get_bucket(param_bucket_name) 
 
     ## Validação da Data de Execução
    

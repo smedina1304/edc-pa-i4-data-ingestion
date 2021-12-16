@@ -20,7 +20,7 @@ class utilGCS:
     """
 
     # Metodo inicial de definição
-    def __init__(self, bucketName=None, debugMode=True):
+    def __init__(self, projectid=None, bucketName=None, debugMode=True):
         """
         Metodo inicial de definição
 
@@ -33,8 +33,7 @@ class utilGCS:
 
         self.__clearAll()
 
-        if bucketName is not None:
-            self.initBucket(bucketName)
+        self.initBucket(projectid,bucketName)
 
 
 
@@ -52,7 +51,7 @@ class utilGCS:
         self.gs = None
 
 
-    def initBucket(self, bucketName):
+    def initBucket(self, projectid, bucketName):
         """
         Metodo utilizado para inicializar Conexão com o Cloud Storage e criação do objeto bucket referente a área de dados.
 
@@ -63,8 +62,16 @@ class utilGCS:
         """
 
         self.storage_client = storage.Client()
-        self.bucket = self.storage_client.get_bucket(bucketName)
-        self.gs = gcsfs.GCSFileSystem()
+        if bucketName is not None:
+            self.bucket = self.storage_client.get_bucket(bucketName)
+
+        if projectid is not None:
+            self.gs = gcsfs.GCSFileSystem(projectid=projectid)
+        else:
+            self.gs = gcsfs.GCSFileSystem()
+
+        self.bucketName = bucketName
+        self.projectid = projectid
 
     
     def delete_blob(self, pathName):

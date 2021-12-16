@@ -10,12 +10,8 @@ import pyarrow.parquet as pq
 from google.cloud import storage
 from datetime import datetime, timedelta
 
-# bucketName
-bucketName='edc-pa-i4-data'
-
 # Funções de integração com o Cloud Storage
 from utilGCS import utilGCS
-gcs = utilGCS(bucketName=bucketName)
 
 # Funções diversas de manipulação de dados
 from utilFuncs import utilFuncs
@@ -39,6 +35,10 @@ if __name__ == "__main__":
         # Parametro de definição do ID da linha de produção
         #param_line_id = os.environ['PARAM_LINE_ID']
 
+        # Parametro de definição do Projeto e Bucket GCS
+        param_project_id = os.environ['PARAM_PROJECT_ID']
+        param_bucket_name = os.environ['PARAM_BUCKET_NAME']        
+
         # Parametros de credenciais de autenticação
         #gcp_credentials = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
         gcp_credentials = '/var/secrets/gcp/key.json'
@@ -57,6 +57,8 @@ if __name__ == "__main__":
     else:
         # Entrada de parametros
         print('### Entrada de Parametros.')
+        print('OK ->','PARAM_PROJECT_ID:',param_project_id)
+        print('OK ->','PARAM_BUCKET_NAME:',param_bucket_name)
         print('OK ->','PARAM_EXECUTION_DATE:',param_execution_date)
         print('OK ->','GOOGLE_APPLICATION_CREDENTIALS',gcp_credentials)
         print('\n')
@@ -98,6 +100,9 @@ if __name__ == "__main__":
 
     print('\n')
 
+    ## Funções de integração com o Cloud Storage
+    gcs = utilGCS(projectid=param_project_id, bucketName=param_bucket_name)
+
     ## Inicio do processo
 
     # Se nenhum erro reportado
@@ -105,17 +110,17 @@ if __name__ == "__main__":
         
         # Caregando os dados da processing - dataop
         source = "dataop"
-        folder = f"{bucketName}/processing-zone/{source}"
+        folder = f"{param_bucket_name}/processing-zone/{source}"
         df_dataop = gcs.read_parquet_to_pandas(path=folder, filters=[('DTPROD', '=', param_execution_date)])
 
         # Caregando os dados da processing - dataconfirm
         source = "dataconfirm"
-        folder = f"{bucketName}/processing-zone/{source}"
+        folder = f"{param_bucket_name}/processing-zone/{source}"
         df_dataconfirm = gcs.read_parquet_to_pandas(path=folder, filters=[('DTPROD', '=', param_execution_date)])
 
         # Caregando os dados da processing - dataprod
         source = "dataprod"
-        folder = f"{bucketName}/processing-zone/{source}"
+        folder = f"{param_bucket_name}/processing-zone/{source}"
         df_dataprod = gcs.read_parquet_to_pandas(path=folder, filters=[('DTPROD', '=', param_execution_date)])
 
         # Verifica se os DF foram carregados com dados

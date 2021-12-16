@@ -20,6 +20,9 @@ from airflow.models import Variable
 # google_app_credentials = Variable.get(key='GOOGLE_APPLICATION_CREDENTIALS')
 # google_oauth_settings = Variable.get(key='GOOGLE_OAUTH_SETTINGS_FILE')
 
+google_project_id = Variable.get(key='TASK_PA_I4_GOOGLE_PROJECT_ID')
+google_bucket_name = Variable.get(key='TASK_PA_I4_GOOGLE_BUCKET_NAME')
+
 # ## Secrets oauth-settings
 settings_volume = k8s.V1Volume(
     name='oauth-settings-key',
@@ -63,7 +66,7 @@ with DAG(
         'email_on_retry': False,
         'max_active_runs': 1,
     },
-    description='Processamento de dados de Produção - 3.1',
+    description='Processamento de dados de Produção - 3.2',
     schedule_interval="@once",
     start_date=airflow.utils.dates.days_ago(1),
     catchup=False,
@@ -75,6 +78,8 @@ with DAG(
         image="docker.io/smedina1304/run-pods-python:1.0",
         env_vars={
             'PRG_NAME': './job_source_data_collection.py',
+            'PARAM_PROJECT_ID' : google_project_id,
+            'PARAM_BUCKET_NAME' : google_bucket_name,
             'PARAM_EXECUTION_DATE': '{{ dag_run.conf["PARAM_EXECUTION_DATE"] }}',
             'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}'
         },
@@ -94,6 +99,8 @@ with DAG(
         image="docker.io/smedina1304/run-pods-python:1.0",
         env_vars={
             'PRG_NAME': './job_dataop_cleaning_preparation.py',
+            'PARAM_PROJECT_ID' : google_project_id,
+            'PARAM_BUCKET_NAME' : google_bucket_name,
             'PARAM_EXECUTION_DATE': '{{ dag_run.conf["PARAM_EXECUTION_DATE"] }}',
             'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}'
         },
@@ -114,6 +121,8 @@ with DAG(
         image="docker.io/smedina1304/run-pods-python:1.0",
         env_vars={
             'PRG_NAME': './job_dataprod_cleaning_preparation.py',
+            'PARAM_PROJECT_ID' : google_project_id,
+            'PARAM_BUCKET_NAME' : google_bucket_name,
             'PARAM_EXECUTION_DATE': '{{ dag_run.conf["PARAM_EXECUTION_DATE"] }}',
             'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}'
         },
@@ -134,6 +143,8 @@ with DAG(
         image="docker.io/smedina1304/run-pods-python:1.0",
         env_vars={
             'PRG_NAME': './job_dataconfirm_cleaning_preparation.py',
+            'PARAM_PROJECT_ID' : google_project_id,
+            'PARAM_BUCKET_NAME' : google_bucket_name,
             'PARAM_EXECUTION_DATE': '{{ dag_run.conf["PARAM_EXECUTION_DATE"] }}',
             'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}'
         },
@@ -154,6 +165,8 @@ with DAG(
         image="docker.io/smedina1304/run-pods-python:1.0",
         env_vars={
             'PRG_NAME': './job_mesprod_consumer.py',
+            'PARAM_PROJECT_ID' : google_project_id,
+            'PARAM_BUCKET_NAME' : google_bucket_name,
             'PARAM_EXECUTION_DATE': '{{ dag_run.conf["PARAM_EXECUTION_DATE"] }}',
             'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}'
         },
@@ -174,6 +187,8 @@ with DAG(
         image="docker.io/smedina1304/run-pods-python:1.0",
         env_vars={
             'PRG_NAME': './job_mesoee_consumer.py',
+            'PARAM_PROJECT_ID' : google_project_id,
+            'PARAM_BUCKET_NAME' : google_bucket_name,
             'PARAM_EXECUTION_DATE': '{{ dag_run.conf["PARAM_EXECUTION_DATE"] }}',
             'PARAM_LINE_ID': '{{ dag_run.conf["PARAM_LINE_ID"] }}'
         },

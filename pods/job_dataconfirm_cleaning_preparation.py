@@ -12,7 +12,6 @@ from datetime import datetime, timedelta
 
 # Funções de integração com o Cloud Storage
 from utilGCS import utilGCS
-gcs = utilGCS(bucketName='edc-pa-i4-data')
 
 # Funções diversas de manipulação de dados
 from utilFuncs import utilFuncs
@@ -36,6 +35,10 @@ if __name__ == "__main__":
         # Parametro de definição do ID da linha de produção
         #param_line_id = os.environ['PARAM_LINE_ID']
 
+        # Parametro de definição do Projeto e Bucket GCS
+        param_project_id = os.environ['PARAM_PROJECT_ID']
+        param_bucket_name = os.environ['PARAM_BUCKET_NAME']        
+
         # Parametros de credenciais de autenticação
         #gcp_credentials = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
         gcp_credentials = '/var/secrets/gcp/key.json'
@@ -54,6 +57,8 @@ if __name__ == "__main__":
     else:
         # Entrada de parametros
         print('### Entrada de Parametros.')
+        print('OK ->','PARAM_PROJECT_ID:',param_project_id)
+        print('OK ->','PARAM_BUCKET_NAME:',param_bucket_name)
         print('OK ->','PARAM_EXECUTION_DATE:',param_execution_date)
         print('OK ->','GOOGLE_APPLICATION_CREDENTIALS',gcp_credentials)
         print('\n')
@@ -94,6 +99,9 @@ if __name__ == "__main__":
         raise Exception( msg_error )
 
     print('\n')
+
+    ## Funções de integração com o Cloud Storage
+    gcs = utilGCS(projectid=param_project_id, bucketName=param_bucket_name)
 
     ## Inicio do processo de preparação e limpesa
 
